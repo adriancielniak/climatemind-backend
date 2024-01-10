@@ -25,12 +25,6 @@ class TestLogin(unittest.TestCase):
         response = requests.post(self.BASE_URL, headers=self.HEADERS, json=payload)
         self.assertNotEqual(response.status_code, 200)
 
-    def test_missing_credentials(self):
-        payload = {
-            "email": "testds1c1@example.com"
-        }
-        response = requests.post(self.BASE_URL, headers=self.HEADERS, json=payload)
-        self.assertNotEqual(response.status_code, 200)
 
     def test_missing_credentials1(self):
         payload = {
