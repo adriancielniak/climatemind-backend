@@ -1,8 +1,11 @@
 import unittest
 import requests
+###########################################################################################
+######           Remember to input data below          ####################################
+###########################################################################################
 
-correctemail = %input
-correctpassword = %input
+correctemail = #input
+correctpassword = #input
 
 class TestLogin(unittest.TestCase):
     BASE_URL = "http://localhost:5000/login"
