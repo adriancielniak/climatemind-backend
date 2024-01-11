@@ -46,3 +46,8 @@ def test_validate_values_descriptions_file_and_schema():
         assert False, "Value descriptions file is not valid"
     except SchemaError:
         assert False, "Value descriptions schema is not valid"
+        
+def test_value_descriptions_consistency_with_schema():
+    for key in JSON_FILE.keys():
+        validate(JSON_FILE[key], JSON_SCHEMA)
+        assert True, "Value descriptions file should be consistent with the schema"
