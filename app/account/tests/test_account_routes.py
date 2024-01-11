@@ -479,3 +479,20 @@ def test_delete_user(client, accept_json):
         },
     )
     assert response.status_code == 401, "Wrong eamil or password. Try again."
+
+@pytest.mark.integration
+def test_current_quizId(client, accept_json):
+    user = UsersFactory()
+    session = SessionsFactory(user=user)
+
+    access_token = create_access_token(
+        identity=user, fresh=True, expires_delta=timedelta(seconds=60)
+    )
+    client.set_cookie("localhost", "access_token", access_token)
+
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    response = client.get(url_for("account.current_quizId"), headers=session_header)
+    
+    assert response.status_code == 200, "Success"
+    assert response.json.get("quizId") == user.quiz_uuid, "Correct quizId returned"   
