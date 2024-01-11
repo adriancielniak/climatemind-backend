@@ -15,6 +15,14 @@ faked_datetime = faker.date_time()
 faked_ip = faker.ipv4()
 
 
+from session_helpers import generate_session_token
+
+
+def test_generate_session_token_unique():
+    token1 = generate_session_token()
+    token2 = generate_session_token()
+    assert token1 != token2 
+
 @pytest.mark.parametrize(
     "session_uuid, session_created_timestamp, user_uuid, ip_address",
     (

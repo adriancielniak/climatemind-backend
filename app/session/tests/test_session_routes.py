@@ -10,6 +10,17 @@ from app.models import Sessions
 faked_now = faker.date_time()
 
 
+def test_create_session(client):
+    response = client.post('/create-session', json={'user_id': '12345'})
+    assert response.status_code == 200
+    assert 'session_id' in response.json
+    assert isinstance(response.json['session_id'], str)
+
+def test_create_session_without_user_id(client):
+    response = client.post('/create-session', json={})
+    assert response.status_code == 400
+
+
 @pytest.mark.integration
 def test_session_response(client):
     response = client.post(url_for("session.post_session"))
