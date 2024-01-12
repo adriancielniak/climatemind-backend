@@ -1,6 +1,7 @@
-# Assuming there's a function `store_subscription` in `store_subscription_data.py`:
 import pytest
-from store_subscription_data import store_subscription
+from app import db
+from app.subscribe.store_subscription_data import store_subscription_data
+from app.subscribe.store_subscription_data import store_subscription_data
 
 
 def test_store_subscription_invalid_data(db_session):
@@ -14,7 +15,7 @@ def test_store_subscription_invalid_data(db_session):
     
     # Call the function to test and assert it raises an error
     with pytest.raises(ValueError):
-        store_subscription(subscription_data)
+        store_subscription_data(subscription_data)
 
 def test_store_subscription_existing_user(db_session):
     # Setup test subscription data for a user who already has a subscription
